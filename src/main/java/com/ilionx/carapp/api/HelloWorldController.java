@@ -12,4 +12,9 @@ public class HelloWorldController {
     public String sayHello() {
         return "hello world!";
     }
+
+    @GetMapping("/poedel")
+    public String poedel() {
+        return "happy poedel!";
+    }
 }
