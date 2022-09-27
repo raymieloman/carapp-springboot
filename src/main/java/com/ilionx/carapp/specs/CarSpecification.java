@@ -18,8 +18,7 @@ public class CarSpecification implements Specification<Car> {
 
     @Override
     public Predicate toPredicate(Root<Car> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-
-        return criteriaBuilder.greaterThanOrEqualTo(root.);
-
+        //  root.<String>get(criteria.getKey()), criteria.getValue().toString());
+        return criteriaBuilder.lessThanOrEqualTo(root.<String>get("mileage"), String.valueOf(this.maxMileage));
     }
 }

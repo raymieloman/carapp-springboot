@@ -2,6 +2,7 @@ package com.ilionx.carapp.service;
 
 import com.ilionx.carapp.model.Car;
 import com.ilionx.carapp.persistence.CarRepository;
+import com.ilionx.carapp.specs.CarSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ public class CarService {
     private CarRepository carRepository;
 
     public List<Car> findAll() {
-        return carRepository.findAll();
+        return carRepository.findAll(new CarSpecification(10000));
     }
 
     public Car save(Car car) {
