@@ -22,6 +22,7 @@ public class CarSpecification implements Specification<Car> {
 //        return criteriaBuilder.lessThanOrEqualTo(root.get("mileage"), String.valueOf(this.maxMileage));
 
 //        return criteriaBuilder.lessThanOrEqualTo(root.get("mileage"), String.valueOf(this.maxMileage));
-        return criteriaBuilder.
+        return criteriaBuilder.lessThanOrEqualTo(root.get("mileage"), String.valueOf(this.maxMileage));
+        root.join("books")
     }
 }
