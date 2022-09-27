@@ -5,6 +5,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Optional;
+
 @Repository
-public interface CarRepository extends JpaRepository<Car, Long>, JpaSpecificationExecutor<Car> {
-}
+    public interface CarRepository extends JpaRepository<Car, Long>, JpaSpecificationExecutor<Car> {
+    List<Car> findByBrand(String merk);
+    List<Car> findByBrandAndLicensePlate(String brand, String licensePlate);
+    List<Car> findAllByOrderByBrand();
+    List<Car> findByMileageLessThanOrderByBrandAsc(double maxMileage);
+    Optional<Car> findByLicensePlate(String licensePlate);
+
