@@ -3,10 +3,7 @@ package com.ilionx.carapp.specs;
 import com.ilionx.carapp.model.Car;
 import org.springframework.data.jpa.domain.Specification;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 
 public class CarSpecification implements Specification<Car> {
 
@@ -19,10 +16,15 @@ public class CarSpecification implements Specification<Car> {
     @Override
     public Predicate toPredicate(Root<Car> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
         //  root.<String>get(criteria.getKey()), criteria.getValue().toString());
-//        return criteriaBuilder.lessThanOrEqualTo(root.get("mileage"), String.valueOf(this.maxMileage));
-
-//        return criteriaBuilder.lessThanOrEqualTo(root.get("mileage"), String.valueOf(this.maxMileage));
         return criteriaBuilder.lessThanOrEqualTo(root.get("mileage"), String.valueOf(this.maxMileage));
-        root.join("books")
+
+    }
+
+    public static Specification<Car> hasBookWithTitle(String bookTitle) {
+
+        return (root, query, criteriaBuilder) -> {
+            Join<Car, Car> authorsBook = root.join("books");
+            return criteriaBuilder.equal(authorsBook.get("title"), bookTitle);
+        };
     }
 }
