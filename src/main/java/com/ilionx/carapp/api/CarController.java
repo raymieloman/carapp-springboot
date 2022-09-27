@@ -30,6 +30,11 @@ public class CarController {
         return this.carService.findAll();
     }
 
+    @GetMapping("brand/{brand}")
+    public ResponseEntity<List<Car>> findByBrand(@PathVariable("brand") String merk) {
+        return ResponseEntity.ok(this.carService.findByBrand(merk));
+    }
+
     @GetMapping("{id}")
     // 200
     public ResponseEntity<Car> findById(@PathVariable long id) {
@@ -73,7 +78,12 @@ public class CarController {
     @ResponseStatus(HttpStatus.CREATED)
     public Car create(@RequestBody Car car) {
         Car result = this.carService.save(car);
-        
+
         return result;
+    }
+
+    @GetMapping("order/brand")
+    public ResponseEntity<List<Car>> findAllByOrderByBrand() {
+        return ResponseEntity.ok(this.carService.findAllByOrderByBrand());
     }
 }

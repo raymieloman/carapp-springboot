@@ -18,6 +18,10 @@ public class CarService {
         return carRepository.findAll();
     }
 
+    public List<Car> findAllByOrderByBrand() {
+        return this.carRepository.findAllByOrderByBrand();
+    }
+
     public Car save(Car car) {
         return carRepository.save(car);
     }
@@ -45,5 +49,21 @@ public class CarService {
             this.carRepository.save(target);
         }
         return optionalCar;
+    }
+
+    public List<Car> findByBrand(String merk) {
+        return carRepository.findByBrand(merk);
+    }
+
+    public List<Car> findByBrandAndLicensePlate(String brand, String licensePlate) {
+        return carRepository.findByBrandAndLicensePlate(brand, licensePlate);
+    }
+
+    public List<Car> findByMileageLessThanOrderByBrandAsc(double maxMileage) {
+        return carRepository.findByMileageLessThanOrderByBrandAsc(maxMileage);
+    }
+
+    public Optional<Car> findByLicensePlate(String licensePlate) {
+        return carRepository.findByLicensePlate(licensePlate);
     }
 }
