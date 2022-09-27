@@ -2,6 +2,8 @@ package com.ilionx.carapp.model;
 
 import javax.persistence.*;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class Car {
@@ -11,6 +13,8 @@ public class Car {
     private long id;
 
     private Duration duration;
+
+    private LocalDateTime dateTimeBuild;
 
     @Column(nullable = false)
     private String brand;
@@ -40,6 +44,22 @@ public class Car {
 
     public double getMileage() {
         return mileage;
+    }
+
+    public Duration getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Duration duration) {
+        this.duration = duration;
+    }
+
+    public LocalDateTime getDateTimeBuild() {
+        return dateTimeBuild;
+    }
+
+    public void setDateTimeBuild(LocalDateTime dateTimeBuild) {
+        this.dateTimeBuild = dateTimeBuild;
     }
 
     public void setMileage(double mileage) {
