@@ -9,14 +9,11 @@ import java.util.Optional;
 
 @Repository
 public interface CarRepository extends JpaRepository<Car, Long> {
+
     List<Car> findByBrand(String merk);
     List<Car> findByBrandAndLicensePlate(String brand, String licensePlate);
-
     List<Car> findAllByOrderByBrand();
-
     List<Car> findByMileageLessThanOrderByBrandAsc(double maxMileage);
-
     Optional<Car> findByLicensePlate(String licensePlate);
-
 
 }

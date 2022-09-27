@@ -78,7 +78,12 @@ public class CarController {
     @ResponseStatus(HttpStatus.CREATED)
     public Car create(@RequestBody Car car) {
         Car result = this.carService.save(car);
-        
+
         return result;
+    }
+
+    @GetMapping("order/brand")
+    public ResponseEntity<List<Car>> findAllByOrderByBrand() {
+        return ResponseEntity.ok(this.carService.findAllByOrderByBrand());
     }
 }

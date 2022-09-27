@@ -15,7 +15,11 @@ public class CarService {
     private CarRepository carRepository;
 
     public List<Car> findAll() {
-        return carRepository.findAllByOrderByBrand();
+        return carRepository.findAll();
+    }
+
+    public List<Car> findAllByOrderByBrand() {
+        return this.carRepository.findAllByOrderByBrand();
     }
 
     public Car save(Car car) {
