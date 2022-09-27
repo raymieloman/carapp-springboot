@@ -74,6 +74,7 @@ public class CarController {
     @ResponseStatus(HttpStatus.CREATED)
     public Car create(@RequestBody Car car) {
         Car result = this.carRepository.save(car);
+        
         return result;
     }
 }
