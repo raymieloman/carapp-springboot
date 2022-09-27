@@ -15,7 +15,7 @@ public class CarService {
     private CarRepository carRepository;
 
     public List<Car> findAll() {
-        return carRepository.findAll();
+        return carRepository.findAllByOrderByBrand();
     }
 
     public Car save(Car car) {
@@ -45,5 +45,21 @@ public class CarService {
             this.carRepository.save(target);
         }
         return optionalCar;
+    }
+
+    public List<Car> findByBrand(String merk) {
+        return carRepository.findByBrand(merk);
+    }
+
+    public List<Car> findByBrandAndLicensePlate(String brand, String licensePlate) {
+        return carRepository.findByBrandAndLicensePlate(brand, licensePlate);
+    }
+
+    public List<Car> findByMileageLessThanOrderByBrandAsc(double maxMileage) {
+        return carRepository.findByMileageLessThanOrderByBrandAsc(maxMileage);
+    }
+
+    public Optional<Car> findByLicensePlate(String licensePlate) {
+        return carRepository.findByLicensePlate(licensePlate);
     }
 }
