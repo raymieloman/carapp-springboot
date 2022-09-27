@@ -1,7 +1,7 @@
 package com.ilionx.carapp.api;
 
 import com.ilionx.carapp.model.Car;
-import com.ilionx.carapp.persistence.CarRepository;
+import com.ilionx.carapp.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -16,7 +16,7 @@ import java.util.Optional;
 public class CarController {
 
     @Autowired
-    private CarRepository carRepository;
+    private CarService carService;
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public String errorHandler() {
@@ -27,15 +27,14 @@ public class CarController {
     // Hier komt een 200 (OK) uit.
     @GetMapping
     public List<Car> cars() {
-
-        return this.carRepository.findAll();
+        return this.carService.findAll();
     }
 
     @GetMapping("{id}")
     // 200
     public ResponseEntity<Car> findById(@PathVariable long id) {
 
-        Optional<Car> optionalCar = this.carRepository.findById(id);
+        Optional<Car> optionalCar = this.carService.findById(id);
         if (optionalCar.isPresent()) {
 
             return ResponseEntity.ok(optionalCar.get());
@@ -48,25 +47,20 @@ public class CarController {
 
     @PutMapping("{id}")
     public ResponseEntity<Car> updateById(@PathVariable long id, @RequestBody Car input) {
-        Optional<Car> optionalCar = this.carRepository.findById(id);
+
+        Optional<Car> optionalCar = this.carService.updateById(id, input);
         if (optionalCar.isPresent()) {
-            Car target = optionalCar.get();
-            target.setLicensePlate(input.getLicensePlate());
-            target.setBrand(input.getBrand());
-            target.setLicensePlate(input.getLicensePlate());
-
-            return ResponseEntity.ok(this.carRepository.save(target));
+            return ResponseEntity.ok(optionalCar.get());
         } else {
-
             return ResponseEntity.notFound().build();
         }
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<Car> deleteById(@PathVariable long id) {
-        Optional<Car> optionalCar = this.carRepository.findById(id);
+        Optional<Car> optionalCar = this.carService.findById(id);
         if (optionalCar.isPresent()) {
-            this.carRepository.deleteById(id);
+            this.carService.deleteById(id);
 
             return ResponseEntity.noContent().build();
         } else {
@@ -78,7 +72,7 @@ public class CarController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Car create(@RequestBody Car car) {
-        Car result = this.carRepository.save(car);
+        Car result = this.carService.save(car);
         
         return result;
     }
