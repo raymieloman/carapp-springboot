@@ -2,8 +2,8 @@ package com.ilionx.carapp.api;
 
 import com.ilionx.carapp.model.Car;
 import com.ilionx.carapp.persistence.CarRepository;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,10 +18,16 @@ public class CarController {
     @Autowired
     private CarRepository carRepository;
 
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public String errorHandler() {
+        return "Badmuts";
+    }
+
 
     // Hier komt een 200 (OK) uit.
     @GetMapping
     public List<Car> cars() {
+
         return this.carRepository.findAll();
     }
 
