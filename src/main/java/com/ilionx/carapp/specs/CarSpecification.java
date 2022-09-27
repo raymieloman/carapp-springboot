@@ -22,9 +22,19 @@ public class CarSpecification implements Specification<Car> {
 
     public static Specification<Car> hasBookWithTitle(String bookTitle) {
 
+        return new Specification<Car>() {
+            @Override
+            public Predicate toPredicate(Root<Car> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+                Join<Car, Car> authorsBook = root.join("books");
+                return criteriaBuilder.equal(authorsBook.get("title"), bookTitle);
+            }
+        };
+        /*
         return (root, query, criteriaBuilder) -> {
             Join<Car, Car> authorsBook = root.join("books");
             return criteriaBuilder.equal(authorsBook.get("title"), bookTitle);
         };
+
+         */
     }
 }
