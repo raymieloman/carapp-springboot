@@ -1,6 +1,7 @@
 package com.ilionx.carapp.model;
 
 import javax.persistence.*;
+import java.time.Duration;
 
 @Entity
 public class Car {
@@ -8,6 +9,8 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    private Duration duration;
 
     @Column(nullable = false)
     private String brand;
