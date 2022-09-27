@@ -70,7 +70,6 @@ public class CarController {
     }
 
     @PostMapping
-    // Hier komt OK uit (200)
     @ResponseStatus(HttpStatus.CREATED)
     public Car create(@RequestBody Car car) {
         Car result = this.carRepository.save(car);
