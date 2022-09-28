@@ -4,6 +4,7 @@ import com.ilionx.carapp.model.Car;
 import com.ilionx.carapp.model.Coureur;
 import com.ilionx.carapp.persistence.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,10 +24,15 @@ public class CarService {
     @Autowired
     private CarRepository carRepository;
 
+    @Value("${companyName}")
+    private String companyName;
+
     public List<Car> findAll() {
 
         System.out.println("Er is een courier maxie: " + this.maxVerstappen.getName());
         System.out.println("Er is een courier lewis: " + this.lewisHamilton.getName());
+
+        System.out.println("Onze company name is nu: " + this.companyName);
 
         return carRepository.findAll();
     }
