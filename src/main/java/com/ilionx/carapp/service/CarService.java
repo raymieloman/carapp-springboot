@@ -4,11 +4,13 @@ import com.ilionx.carapp.model.Car;
 import com.ilionx.carapp.persistence.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+// @Transactional // Maakt alle public methods die je VAN BUITEN aanroept Transactioneel
 public class CarService {
 
     @Autowired
@@ -22,6 +24,7 @@ public class CarService {
         return this.carRepository.findAllByOrderByBrand();
     }
 
+    @Transactional // Deze start een transactie als hij VAN BUITEN deze class wordt aangeroepen.
     public Car save(Car car) {
         return carRepository.save(car);
     }
