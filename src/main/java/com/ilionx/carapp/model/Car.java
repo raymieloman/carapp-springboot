@@ -1,8 +1,9 @@
 package com.ilionx.carapp.model;
 
+
 import javax.persistence.*;
 
-@Entity
+@Entity(name="Auto")
 public class Car {
 
     @Id
