@@ -21,7 +21,7 @@ public class CarService {
     private Coureur lewisHamilton;
 
     @Autowired
-    private CarRepository carRepository;
+    public CarRepository carRepository;
 
     public List<Car> findAll() {
 
