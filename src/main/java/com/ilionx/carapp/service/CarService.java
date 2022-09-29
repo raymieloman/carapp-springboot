@@ -29,10 +29,10 @@ public class CarService {
 
     public List<Car> findAll() {
 
-        System.out.println("Er is een courier maxie: " + this.maxVerstappen.getName());
-        System.out.println("Er is een courier lewis: " + this.lewisHamilton.getName());
-
-        System.out.println("Onze company name is nu: " + this.companyName);
+//        System.out.println("Er is een courier maxie: " + this.maxVerstappen.getName());
+//        System.out.println("Er is een courier lewis: " + this.lewisHamilton.getName());
+//
+//        System.out.println("Onze company name is nu: " + this.companyName);
 
         return carRepository.findAll();
     }
