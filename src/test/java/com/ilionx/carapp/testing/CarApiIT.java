@@ -47,4 +47,18 @@ public class CarApiIT {
         assertEquals("Kia", returnedCar.getBrand());
         currentId = returnedCar.getId();
     }
+
+    @Test
+    @Order(2)
+    public void testGetById() {
+
+        // When
+
+        ResponseEntity<Car> response  = this.restTemplate.getForEntity(url+"/"+currentId, Car.class);
+
+        // Then
+        assertNotNull(response.getBody());
+        Car responsedCar = response.getBody();
+        assertEquals(97001, responsedCar.getMileage());
+    }
 }
