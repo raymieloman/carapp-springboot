@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -38,15 +39,17 @@ public class CarServiceTest {
 
         // Then
         assertEquals(123, result.getMileage());
+        assertEquals("Kia", result.getBrand());
     }
 
     // oefening, maak dit zelf verder af
     @Test
     public void testFindAll() {
         // Given
-        Car c = new Car();
+        Car car = new Car();
 
         // Mock the carRepository zijn findAll
+        Mockito.when(this.carRepository.findAll()).thenReturn(Collections.singletonList(car));
 
         // When
         List<Car> resultFromService = this.carService.findAll();
