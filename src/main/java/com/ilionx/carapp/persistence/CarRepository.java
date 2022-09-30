@@ -17,11 +17,11 @@ public interface CarRepository extends JpaRepository<Car, Long> {
     List<Car> findByMileageLessThanOrderByBrandAsc(double maxMileage);
     Optional<Car> findByLicensePlate(String licensePlate);
 
-    @Query("select auto from Auto auto where auto.brand like %?1% and auto.mileage < ?2") // let op: dit is JPQL
-    List<Car> lijstAutosVanMerk(String merk, int mileage);
+    @Query("select car from Car car where car.brand like %?1% and car.mileage < ?2") // let op: dit is JPQL
+    List<Car> lijstCarsVanMerk(String merk, int mileage);
 
     // Native Query dus standaard SQL
     @Query(value = "SELECT * from CAR WHERE id is not null", nativeQuery = true)
-    List<Car> listAutosDieOphaalbaarZijnMetEenMoeilijkeQuery();
+    List<Car> listCarsDieOphaalbaarZijnMetEenMoeilijkeQuery();
 
 }
