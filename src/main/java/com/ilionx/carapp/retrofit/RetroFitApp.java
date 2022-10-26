@@ -12,20 +12,27 @@ public class RetroFitApp {
 
     public static void main(String[] args) throws IOException {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.github.com/")
+                .baseUrl("https://jsonplaceholder.typicode.com/")
                 .addConverterFactory(JacksonConverterFactory.create())
                 .build();
 
         GitHubService service = retrofit.create(GitHubService.class);
-        Call<List<Repo>> repos = service.listRepos("octocat");
+        Call<List<Post>> posts = service.listAllPosts("posts");
 
-        Response<List<Repo>> listResponse = repos.execute();
+        Response<List<Post>> listResponse = posts.execute();
         if (listResponse.isSuccessful()) {
-            for (Repo repo : listResponse.body()) {
-                System.out.println(repo.getName());
-
+            for (Post post : listResponse.body()) {
+                System.out.println(post.getTitle());
             }
         }
 
+        System.err.println("Below for user id: 1");
+        Call<List<Post>> listPostsForUserId = service.listPostsForUserId("1");
+        listResponse = listPostsForUserId.execute();
+        if (listResponse.isSuccessful()) {
+            for (Post post : listResponse.body()) {
+                System.out.println(post.getTitle());
+            }
+        }
     }
 }

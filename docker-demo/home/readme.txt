@@ -12,4 +12,4 @@ Het HERstarten van een BESTAAANDE container met
 docker container start  <containerName| containerId>
 
 Het starten van een NGINX container:
-docker container run -dit --name=nginx-1 -p 81:80 -v /home/rloman/repo/carapp/docker-demo/home:/usr/share/nginx/html nginx:latest
+docker container run -dit --name=nginx-1 -p 81:80 -v /home/rloman/post/carapp/docker-demo/home:/usr/share/nginx/html nginx:latest
