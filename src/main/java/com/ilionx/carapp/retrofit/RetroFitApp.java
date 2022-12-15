@@ -10,9 +10,11 @@ import java.util.List;
 
 public class RetroFitApp {
 
+    public static final String baseUrl = "https://jsonplaceholder.typicode.com/";
+
     public static void main(String[] args) throws IOException {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://jsonplaceholder.typicode.com/")
+                .baseUrl(baseUrl)
                 .addConverterFactory(JacksonConverterFactory.create())
                 .build();
 
@@ -22,7 +24,7 @@ public class RetroFitApp {
         Response<List<Post>> listResponse = posts.execute();
         if (listResponse.isSuccessful()) {
             for (Post post : listResponse.body()) {
-                System.out.println(post.getTitle());
+                System.out.println(post);
             }
         }
 
@@ -31,7 +33,7 @@ public class RetroFitApp {
         listResponse = listPostsForUserId.execute();
         if (listResponse.isSuccessful()) {
             for (Post post : listResponse.body()) {
-                System.out.println(post.getTitle());
+                System.out.println(post);
             }
         }
     }
